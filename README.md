@@ -19,10 +19,6 @@ Lê Ngọc Tú msv K225480106069
 7. Tại sao chúng ta nên thêm hậu tố :ro khi mount file cấu hình Nginx?
 8. Khi dùng Cloudflare Tunnel: có cần thiết phải mở cổng cho các service nữa không?
 # Trả lời câu hỏi
-Được, mình sẽ trả lời theo kiểu **ngắn gọn – rõ ràng – phù hợp bài kiểm tra**:
-
----
-
 ## **1. Tại sao dùng Nginx Reverse Proxy mà không trỏ thẳng Tunnel vào Node-RED?**
 
 * **Bảo mật**: Nginx giúp ẩn backend (Node-RED), tránh bị truy cập trực tiếp.
@@ -31,8 +27,6 @@ Lê Ngọc Tú msv K225480106069
 * **Mở rộng**: Dễ thêm service mới mà không cần thay đổi cấu trúc hệ thống.
 
 → Trỏ thẳng vào Node-RED chỉ phù hợp cho demo nhỏ, không phù hợp thực tế.
-
----
 
 ## **2. Sự khác biệt giữa Mount file và Mount thư mục trong Docker**
 
@@ -48,8 +42,6 @@ Lê Ngọc Tú msv K225480106069
 
 → Mount thư mục có thể ghi đè toàn bộ nội dung trong container.
 
----
-
 ## **3. Nếu thay đổi file index.html ở Ubuntu, web có thay đổi ngay không? Tại sao?**
 
 * **Có**, nếu file được mount từ host vào container.
@@ -57,8 +49,6 @@ Lê Ngọc Tú msv K225480106069
 * Vì container sử dụng trực tiếp file từ hệ thống host nên thay đổi sẽ phản ánh ngay.
 
 * **Không**, nếu file được copy vào image khi build (không dùng mount).
-
----
 
 ## **4. restart: always và restart: unless-stopped dùng để làm gì?**
 
@@ -71,8 +61,6 @@ Lê Ngọc Tú msv K225480106069
   * Tự khởi động lại trừ khi người dùng đã dừng thủ công
 
 → Dùng để đảm bảo service luôn hoạt động ổn định.
-
----
 
 ## **5. Khai báo để tất cả services dùng chung 1 network và lợi ích**
 
@@ -103,8 +91,6 @@ networks:
 * Tăng bảo mật (không cần mở port ra ngoài)
 * Quản lý hệ thống dễ hơn
 
----
-
 ## **6. Đưa Cloudflare Token vào .env và .gitignore, tại sao quan trọng?**
 
 ### .env:
@@ -131,8 +117,6 @@ environment:
 * Tránh lộ thông tin nhạy cảm (token, mật khẩu)
 * Nếu bị lộ, người khác có thể chiếm quyền hệ thống
 * Đây là nguyên tắc bảo mật cơ bản trong phát triển phần mềm
-
----
 
 ## **7. Tại sao thêm :ro khi mount file cấu hình Nginx?**
 
